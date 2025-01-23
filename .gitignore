@@ -1,0 +1,14 @@
+# Ignorer les dossiers node_modules
+**/node_modules/
+
+# Ignorer les fichiers de builds Angular
+/front/dist/
+
+# Ignorer les fichiers de builds NestJS
+/back/dist/
+
+# Ignorer les fichiers de logs
+**/*.log
+
+# Ignorer les fichiers environnement
+**/.env
