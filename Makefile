@@ -5,10 +5,12 @@ DOCKER_COMPOSE = docker compose
 # Commandes générales
 .PHONY: build up down logs clean
 
-build: build-front build-api build-db ## Build all services
-start: start-front start-api start-db ## Start all services
+build: 
+	$(DOCKER_COMPOSE) build ## Build all services
+start: 
+	$(DOCKER_COMPOSE) up -d ## Start all services
 down: ## Stop and remove all services
-	$(DOCKER_COMPOSE) down
+	$(DOCKER_COMPOSE) down -v
 
 logs: logs-front logs-api logs-db ## Show logs for all services
 clean: ## Clean all services, including volumes and orphan containers

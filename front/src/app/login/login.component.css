@@ -1,0 +1,12 @@
+.login-container {
+  width: 300px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}

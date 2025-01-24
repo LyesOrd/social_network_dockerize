@@ -28,14 +28,12 @@ services:
       - backend_network
 
   db:
-    image: postgres:13.0
+    image: postgres:14-alpine
     container_name: sn_db
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE_NAME}
-      MYSQL_USER: ${DB_DATABASE_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_HOST: '%'
+      POSTGRES_USER: ${DB_DATABASE_USER}  
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE_NAME}
     ports:
       - "5432:5432"
     volumes:
