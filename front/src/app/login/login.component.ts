@@ -6,16 +6,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  standalone: true,
-  imports: [
-    MatInputModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
-  styleUrls: ['./login.component.css'],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    imports: [
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        FormsModule,
+    ],
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email: string = '';

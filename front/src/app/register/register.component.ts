@@ -6,16 +6,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  standalone: true,
-  imports: [
-    MatInputModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
-  styleUrls: ['./register.component.css'],
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    imports: [
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        FormsModule,
+    ],
+    styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   email: string = '';
