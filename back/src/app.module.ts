@@ -15,7 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: 'yourpassword',
       database: 'auth_demo',
       autoLoadEntities: true,
-      synchronize: true, // à désactiver en production
+      synchronize: false,
     }),
     AuthModule,
     UsersModule,
