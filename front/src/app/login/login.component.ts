@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-login',
@@ -29,9 +30,11 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.email, this.password).subscribe(
       (response: any) => {
+        console.log('Login successful:', response);
         localStorage.setItem('token', response.access_token);
         this.authService.isLoggedIn.next(true);
-        this.router.navigate(['/']);
+        console.log('Token:', this.authService.getToken());
+        this.router.navigate(['/home']);
       },
       (error) => {
         this.errorMessage = 'Invalid email or password';

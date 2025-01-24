@@ -1,6 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Image } from '../images/image.entity';
+import { Like } from '../images/like.entity';
 
-@Entity()
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,4 +12,10 @@ export class User {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Image, (image) => image.user)
+  images: Image[];
+
+  @OneToMany(() => Like, (like) => like.user)
+  likes: Like[];
 }

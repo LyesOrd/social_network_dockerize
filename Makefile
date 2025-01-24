@@ -10,7 +10,7 @@ build:
 start: 
 	$(DOCKER_COMPOSE) up -d ## Start all services
 down: ## Stop and remove all services
-	$(DOCKER_COMPOSE) down -v
+	$(DOCKER_COMPOSE) down
 
 logs: logs-front logs-api logs-db ## Show logs for all services
 clean: ## Clean all services, including volumes and orphan containers

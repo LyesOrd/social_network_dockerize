@@ -23,4 +23,17 @@ export class UsersService {
     });
     return this.usersRepository.save(user);
   }
+
+  async getUserById(id: number): Promise<User> {
+    return this.usersRepository.findOne({
+      where: { id },
+      relations: ['likes', 'images'],
+    });
+  }
+
+  async findById(id: number): Promise<User | null> {
+    return this.usersRepository.findOne({
+      where: { id },
+    });
+  }
 }

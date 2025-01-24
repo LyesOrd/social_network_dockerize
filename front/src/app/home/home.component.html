@@ -1,0 +1,22 @@
+<div class="home">
+  <h1>Welcome, {{ user?.email }}</h1>
+
+  <h2>Gallery</h2>
+  @if(images.length === 0) {
+    <div>
+      No images available.
+    </div>
+  }
+  <div class="gallery">
+    @for (image of images; track image.id) {
+      <div class="image-card">
+        <img [src]="image.url" alt="Image" />
+        <div class="actions">
+          <button (click)="onLike(image.id)">Like</button>
+          <button (click)="onDislike(image.id)">Dislike</button>
+        </div>
+        <p>Likes: {{ image.likes }} | Dislikes: {{ image.dislikes }}</p>
+      </div> 
+    }
+  </div>
+</div>
