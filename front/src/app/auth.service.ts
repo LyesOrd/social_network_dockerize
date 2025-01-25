@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,12 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/login`, { email, password });
+    return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
+      tap((response: any) => {
+        localStorage.setItem('token', response.access_token);
+        this.isLoggedIn.next(true);
+      })
+    );
   }
 
   register(email: string, password: string) {
@@ -43,11 +48,32 @@ export class AuthService {
   }
 
   getUserInfo() {
-    return this.http.get(`http://localhost:3000/users/me`);
+    return this.http.get(`http://localhost:3000/users/me`, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`,
+      },
+    });
   }
 
   getImages() {
-    return this.http.get(`${this.imagesApiUrl}`);
+    return this.http.get(`${this.imagesApiUrl}`, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`,
+      },
+    });
+  }
+
+  addImage(imageUrl: string) {
+    return this.http.post('/images', { url: imageUrl });
+  }
+
+  uploadImage(formData: FormData) {
+    const token = this.getToken();
+    return this.http.post(`${this.imagesApiUrl}/upload`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
   likeImage(imageId: number) {

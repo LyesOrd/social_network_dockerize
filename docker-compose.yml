@@ -16,6 +16,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    volumes:
+      - ./docker-data/uploads:/usr/src/app/uploads
     depends_on:
       - db
     environment:
@@ -42,7 +44,10 @@ services:
       - backend_network
 
 volumes:
+  uploads:
+    driver: local
   db_data:
+    driver: local
 
 networks:
   backend_network:

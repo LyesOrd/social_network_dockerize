@@ -13,18 +13,15 @@ export class Image {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 255 })
-  title: string;
-
-  @Column({ type: 'text' })
-  url: string; // URL de l'image (par exemple un lien ou un chemin sur le serveur)
+  @Column()
+  filename: string;
 
   @Column({ type: 'text', nullable: true })
   description: string;
 
   @ManyToOne(() => User, (user) => user.images, { onDelete: 'CASCADE' })
-  user: User; // Propriétaire de l'image
+  user: User;
 
   @OneToMany(() => Like, (like) => like.image)
-  likes: Like[]; // Liste des likes associés à l'image
+  likes: Like[];
 }

@@ -1,6 +1,21 @@
 <mat-toolbar color="primary">
-  <span>Auth App</span>
+  <span class="title">My Appp</span>
   <span class="spacer"></span>
-  <button mat-button routerLink="/login">Login</button>
-  <button mat-button routerLink="/register">Register</button>
+  <nav>
+    <ul class="navbar">
+      @if(!isLoggedIn){
+        <li>
+          <button mat-raised-button color="accent" routerLink="/login">Login</button>
+        </li>
+        <li>
+          <button mat-raised-button color="primary" routerLink="/register">Register</button>
+        </li>
+      }
+      @if(isLoggedIn){
+        <li>
+          <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+        </li>
+      }
+    </ul>
+  </nav>
 </mat-toolbar>

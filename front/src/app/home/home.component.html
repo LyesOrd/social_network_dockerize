@@ -1,22 +1,30 @@
-<div class="home">
+<div>
   <h1>Welcome, {{ user?.email }}</h1>
 
-  <h2>Gallery</h2>
-  @if(images.length === 0) {
-    <div>
-      No images available.
-    </div>
-  }
-  <div class="gallery">
-    @for (image of images; track image.id) {
-      <div class="image-card">
-        <img [src]="image.url" alt="Image" />
-        <div class="actions">
-          <button (click)="onLike(image.id)">Like</button>
-          <button (click)="onDislike(image.id)">Dislike</button>
-        </div>
-        <p>Likes: {{ image.likes }} | Dislikes: {{ image.dislikes }}</p>
-      </div> 
+  <!-- Formulaire pour ajouter une image -->
+  <div>
+    <button (click)="fileInput.click()">Add Image</button>
+    <input
+      type="file"
+      #fileInput
+      style="display: none"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+    />
+  </div>
+
+  <!-- Galerie d'images -->
+  <div>
+    <h2>Your Images</h2>
+    @if(images.length === 0){
+      <div>No images yet!</div>
+    }
+    @for (image of images ; track image.id){
+      <div>
+        <img [src]="image.url" alt="User Image" width="200" />
+        <p>Likes: {{ image.likes }}</p>
+      </div>
+      
     }
   </div>
 </div>
